@@ -8,6 +8,7 @@ public class TileController : MonoBehaviour {
 	protected GameObject tree;
 	protected GameObject resourceModel;
 
+    protected int id;
 	protected int owner = -1;
 	protected int type;
 	protected int resource = -1;
@@ -21,11 +22,18 @@ public class TileController : MonoBehaviour {
 
 	public TileController(){}
 
-	public void tSetup(int _type, int _resource, bool _hill, bool _forest){
-		type = _type;
+	public void tSetup(int _id, int _type, int _resource, bool _hill, bool _forest){
+        id = _id;
+        type = _type;
 		resource = _resource;
 		hill = _hill;
 		forest = _forest;
+        if (id == 410) {
+            type = 3;
+            resource = -1;
+            hill = false;
+            forest = false;
+        }
 
 		Color newcolour;
 		Renderer colour = gameObject.GetComponentInChildren<Renderer> ();
@@ -96,4 +104,8 @@ public class TileController : MonoBehaviour {
 	void Update () {
 
 	}
+
+    public void Improve() {
+        improved = true;
+    }
 }

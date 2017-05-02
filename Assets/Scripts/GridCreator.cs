@@ -26,9 +26,8 @@ public class GridCreator : MonoBehaviour {
 			}
 		}
 
-		int rSeed = Random.Range (0, 99999);
-		Random.seed = rSeed;
-		for (int i = 0; i < grid.Count; i++) {
+		Random.seed = PlayerPrefs.GetInt("rSeed");
+        for (int i = 0; i < grid.Count; i++) {
 			int rng = Random.Range (0, 10);
 			int type = 0;
 			if (getY(i, width) <= 2 || getY(i, width) >= 17) {
@@ -103,8 +102,9 @@ public class GridCreator : MonoBehaviour {
 				}
 			}
 
+
 			TileController setup = grid [i].GetComponentsInChildren<TileController> () [0];
-			setup.tSetup (type, resource, hill, forest);
+			setup.tSetup (i,type, resource, hill, forest);
 
             
 
